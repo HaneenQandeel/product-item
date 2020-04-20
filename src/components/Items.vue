@@ -1,17 +1,17 @@
 <template>
 <div class="container">
     <div class="favourites">
-    <p id="demo">Haneen</p>
+    <h2>Favourites</h2>
     <table>
         <tr class="bTop">
-            <th>Items Name</th>
+            <th class="item-name">Items Name</th>
             <th>Price</th>
         </tr>
         <tr>
             <td>
                 <div class="item-img">
                     <img src="../assets/img2.jpg" width="50px"/>
-                    <p>SEEN by</p>
+                    <p></p>
                 </div>
             
             </td>
@@ -29,7 +29,7 @@
 <script>
   export default {
     data: () => ({
-     
+     items:[]
     }),
     methods:{
         adds(){
@@ -39,8 +39,12 @@
     },
     created(){
         let count = localStorage.getItem("products");
+        
         console.log(count)
         
+    },
+    mounted(){
+        this.items = localStorage.getItem("products");
     }
   }
 </script>
@@ -54,5 +58,16 @@ table{
 }
 .favourites{
     margin:0 auto;
+}
+th.item-name{
+    float: left;
+    margin: 16px 20px;
+}
+table{
+    margin-left: 235px;
+    margin-top: 30px;
+}
+tr.bTop{
+    height:60px;
 }
 </style>

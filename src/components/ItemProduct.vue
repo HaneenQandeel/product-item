@@ -17,7 +17,7 @@
                         <span>0</span>
                     </div>
                     <h5 class="price">{{item.price}}</h5>
-                    <h3 @click.prevent="addTo"><i class="fa fa-heart" aria-hidden="true"></i></h3>
+                    <h3 @click.prevent="addTo" disabled><i class="fa fa-heart" aria-hidden="true"></i></h3>
 
                 </div>
             </div>
@@ -35,24 +35,33 @@
   export default {
     data: () => ({
       counter:0,
+      tableDatas: [],
+      disabled: {
+            type: Boolean,
+            default: false
+        },
       items:[
-          {
+          { 
+            id:1,
             name:'Computers',
             price:'900$',
             image: [require("../assets/computers.jpg")],
           },
           {
+            id:2,
             name:'Laptops',
             price:'2200$',
             image: [require("../assets/laptop.jpg")],
           },
           { 
+            id:3,
             name:'Cars',
             price:'1200$',
             image: [require("../assets/img2.jpg")],
 
           },
           { 
+            id:4,
             name:'Mobiles',
             price:'700$',
             image: [require("../assets/mobiles.jpg")],
@@ -62,15 +71,23 @@
      
     }),
     methods:{
-        addTo(){
-            this.counter++;
+        addTo(index){
+          let targetId = this.items[index]
+          console.log(targetId)
+          let parsed = JSON.stringify(this.items)
+          localStorage.setItem("products",parsed);
+          this.counter++;
             for (var i = 0; i<=this.items; i++){
                 var product = this.items[i]
+                this.tableDatas.push(product);
                 console.log(product)
             }
-            return localStorage.setItem("products",product);
+            // return localStorage.setItem("products",product);
         }
+        
     }
+   
+    
   }
 </script>
 <style>
